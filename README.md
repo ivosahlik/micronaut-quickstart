@@ -11,4 +11,7 @@
 
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
+## Run
+- http://localhost:8081/helloworld
+
 
