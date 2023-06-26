@@ -1,5 +1,6 @@
 package cz.ivosahlik.controller;
 
+import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
@@ -19,5 +20,12 @@ class HelloWorldControllerTest {
     void helloWorldEndpointRespondsWithProperContent() {
         var response = httpClient.toBlocking().retrieve("/helloworld");
         assertEquals("Hello World!", response);
+    }
+
+    @Test
+    void helloWorldEndpointRespondsWithProperStatusCodeAndContent() {
+        var response = httpClient.toBlocking().exchange("/helloworld", String.class);
+        assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals("Hello World!", response.getBody().get());
     }
 }
