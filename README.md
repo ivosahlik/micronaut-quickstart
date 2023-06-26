@@ -14,5 +14,6 @@
 ## Run
 - http://localhost:8081/helloworld
 - http://localhost:8090/helloworld/config
+- http://localhost:8090/helloworld/translation
 
 

@@ -1,5 +1,6 @@
 package cz.ivosahlik.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import io.micronaut.http.HttpStatus;
 import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
@@ -34,5 +35,12 @@ class HelloWorldControllerTest {
         var response = httpClient.toBlocking().exchange("/helloworld/config", String.class);
         assertEquals(HttpStatus.OK, response.getStatus());
         assertEquals("Hello World from application.yml", response.getBody().get());
+    }
+
+    @Test
+    void helloFromTranslationEndpointReturnsContentFromConfigFile() {
+        var response = httpClient.toBlocking().exchange("/helloworld/translation", JsonNode.class);
+        assertEquals(HttpStatus.OK, response.getStatus());
+        assertEquals("{\"cz\":\"Ahoj Světe\",\"en\":\"Hello World\"}", response.getBody().get().toString());
     }
 }

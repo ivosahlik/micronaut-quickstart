@@ -1,5 +1,6 @@
 package cz.ivosahlik.controller;
 
+import cz.ivosahlik.service.HelloWorldTranslationConfig;
 import cz.ivosahlik.service.MyService;
 import io.micronaut.context.annotation.Property;
 import io.micronaut.http.MediaType;
@@ -20,6 +21,9 @@ public class HelloWorldController {
     @Property(name = "hello.world.message")
     private  String helloWorldFromConfig;
 
+    @Inject
+    private HelloWorldTranslationConfig helloWorldTranslationConfig;
+
 //    private final MyService myService;
 //
 //    public HelloWorldController(MyService myService) {
@@ -36,6 +40,13 @@ public class HelloWorldController {
     public String helloConfig() {
         LOG.debug("Return Hello From Config Message: {}", helloWorldFromConfig);
         return helloWorldFromConfig;
+    }
+
+    @Get(uri = "/translation", produces = MediaType.APPLICATION_JSON)
+    public HelloWorldTranslationConfig helloTranslation() {
+        LOG.debug("Return Hello From Config Message: {}", helloWorldTranslationConfig.getCz());
+        LOG.debug("Return Hello From Config Message: {}", helloWorldTranslationConfig.getEn());
+        return helloWorldTranslationConfig;
     }
 
 }

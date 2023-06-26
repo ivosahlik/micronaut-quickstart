@@ -10,3 +10,6 @@ netty:
 hello:
   world:
     message: Hello World from application.yml
+    translation:
+      cz: "Ahoj Světe"
+      en: "Hello World"
