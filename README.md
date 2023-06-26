@@ -13,5 +13,6 @@
 
 ## Run
 - http://localhost:8081/helloworld
+- http://localhost:8090/helloworld/config
 
 
